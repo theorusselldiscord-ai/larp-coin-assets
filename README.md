@@ -1,0 +1,1 @@
+# larp-coin-assets
