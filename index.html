@@ -107,7 +107,11 @@ async function connectSelectedWallet(){
 async function disconnectWallet(){try{const feature=connectedWallet&&connectedWallet.features["standard:disconnect"];if(feature&&typeof feature.disconnect==="function")await feature.disconnect();else if(window.solana&&window.solana.isConnected)await window.solana.disconnect();}catch(e){}connectedWallet=null;connectedAddress=null;balancesEl.style.display="none";connectButton.textContent="CONNECT WALLET";navButton.textContent="CONNECT WALLET";statusEl.textContent="Wallet disconnected";}
 document.getElementById("disconnect-wallet").addEventListener("click",disconnectWallet);
 connectButton.addEventListener("click",showWalletPicker);
-navButton.addEventListener("click",showWalletPicker);
+navButton.addEventListener("click",()=>{
+  const walletSection=document.getElementById("community");
+  walletSection.scrollIntoView({behavior:"smooth",block:"center"});
+  if(!connectedAddress) showWalletPicker();
+});
 document.getElementById("wallet-choose").addEventListener("click",connectSelectedWallet);
 document.getElementById("copy-mint").addEventListener("click",async()=>{
   try{await navigator.clipboard.writeText(mint);document.getElementById("copy-mint").textContent="COPIED";}
