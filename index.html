@@ -35,11 +35,11 @@ function addWallet(wallet){
   });
   if(detectedWallets.has(selected)) select.value=selected;
 }
+const walletAppApi={register:(...wallets)=>wallets.forEach(addWallet)};
 function walletStandardRegister(event){
-  try{event.detail({register:(...wallets)=>wallets.forEach(addWallet)});}catch(e){}
+  try{if(typeof event.detail==="function") event.detail(walletAppApi);}catch(e){}
 }
 window.addEventListener("wallet-standard:register-wallet",walletStandardRegister);
-const walletAppApi={register:(...wallets)=>wallets.forEach(addWallet)};
 window.dispatchEvent(new CustomEvent("wallet-standard:app-ready",{detail:walletAppApi}));
 
 // Legacy Phantom fallback for browsers where it has not registered through Wallet Standard.
@@ -74,6 +74,9 @@ async function connectSelectedWallet(){
     connectButton.textContent="WALLET CONNECTED";
     navButton.textContent="CONNECTED";
     picker.style.display="none";
+    balancesEl.style.display="block";
+    document.getElementById("wallet-address").textContent=account.address;
+    refreshBalances();
   }catch(error){
     statusEl.textContent=error && error.message ? error.message : "Connection cancelled or failed. Please try again.";
   }
