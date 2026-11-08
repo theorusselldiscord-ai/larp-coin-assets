@@ -1,0 +1,16 @@
+{
+  "name": "LARP Coin",
+  "symbol": "LARP",
+  "description": "LARP Coin — Don't just watch. LARP.",
+  "image": "https://raw.githubusercontent.com/theorusselldiscord-ai/larp-coin-assets/main/larp-logo.png",
+  "attributes": [],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://raw.githubusercontent.com/theorusselldiscord-ai/larp-coin-assets/main/larp-logo.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image"
+  }
+}
